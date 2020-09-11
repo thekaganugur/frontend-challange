@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
 
 export interface InputProps {}
 
+const StyledInput = styled.input``;
+
 const Input: FC<InputProps> = (props: InputProps) => {
-  return <div>Input</div>;
+  return <StyledInput>Input</StyledInput>;
 };
 
 export default Input;

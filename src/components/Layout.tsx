@@ -1,4 +1,4 @@
-import React, { Children, FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
