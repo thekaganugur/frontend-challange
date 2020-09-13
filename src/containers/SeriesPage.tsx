@@ -18,7 +18,7 @@ interface SeriesPageProps {}
 
 interface Form {
   filter: string;
-  sort: string;
+  sort: Sort;
 }
 
 type Sort = '' | 'yearDesc' | 'yearAsc' | 'titleDesc' | 'titleAsc';
@@ -38,7 +38,21 @@ const sortYearAsc = (entries?: Entries[]) =>
 const sortTitleDesc = (entries?: Entries[]) =>
   entries?.sort((a, b) => a.title.localeCompare(b.title));
 const sortTitleAsc = (entries?: Entries[]) =>
-  entries?.sort((a, b) => a.title.localeCompare(b.title));
+  entries?.sort((a, b) => b.title.localeCompare(a.title));
+const handleRelatedSort = (entries: Entries[], sortType: Sort) => {
+  switch (sortType) {
+    case 'yearDesc':
+      return sortYearDesc(entries);
+    case 'yearAsc':
+      return sortYearAsc(entries);
+    case 'titleDesc':
+      return sortTitleDesc(entries);
+    case 'titleAsc':
+      return sortTitleAsc(entries);
+    default:
+      return entries;
+  }
+};
 
 const initEntries: Entries[] = [
   {
@@ -97,9 +111,10 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
           options={sortArr}
         />
       </SearchFilterWraper>
-
       <RenderCards
-        cards={entriesToCardsArr(filterEntries(state, form.filter))}
+        cards={entriesToCardsArr(
+          handleRelatedSort(filterEntries(state, form.filter), form.sort)
+        )}
         spaceBetween
       />
     </div>
