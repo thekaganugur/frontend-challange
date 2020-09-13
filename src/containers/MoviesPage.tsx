@@ -5,6 +5,7 @@ import Input from '../components/Input';
 import RenderCards from '../components/RenderCards';
 import Select from '../components/Select';
 import { Flex } from '../styled/styledUtils';
+import { Helmet } from 'react-helmet';
 
 interface MoviesPageProps {}
 
@@ -16,6 +17,7 @@ const SearchFilterWraper = styled.div`
 const MoviesPage: FC<MoviesPageProps> = (props: MoviesPageProps) => {
   return (
     <div>
+      <Helmet title="Popular Movies" />
       <SearchFilterWraper>
         <Flex>
           <Input></Input>

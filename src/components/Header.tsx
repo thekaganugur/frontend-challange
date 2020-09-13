@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Box, StyledLink } from '../styled/styledUtils';
 import Button from './Button';
@@ -37,8 +38,11 @@ const PageTitle = styled.h2`
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = (props: HeaderProps) => {
+  const [title, setTitle] = useState<string>('');
+
   return (
     <StyledHeader>
+      <Helmet onChangeClientState={({ title }) => setTitle(title)} />
       <UpperBlueSection>
         <StyledLink to="/">
           <AppTitle>DEMO ST</AppTitle>
@@ -53,7 +57,7 @@ const Header: FC<HeaderProps> = (props: HeaderProps) => {
       </UpperBlueSection>
 
       <BelowGraySection>
-        <PageTitle>Popular</PageTitle>
+        <PageTitle>{title}</PageTitle>
       </BelowGraySection>
     </StyledHeader>
   );

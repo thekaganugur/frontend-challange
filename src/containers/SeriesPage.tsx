@@ -7,6 +7,7 @@ import Select from '../components/Select';
 import { Flex } from '../styled/styledUtils';
 import { getData } from '../services/services';
 import { Entries } from '../models';
+import { Helmet } from 'react-helmet';
 
 const SearchFilterWraper = styled.div`
   display: flex;
@@ -94,6 +95,7 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
 
   return (
     <div>
+      <Helmet title="Popular Series" />
       <SearchFilterWraper>
         <Flex>
           <Input
