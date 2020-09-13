@@ -12,11 +12,13 @@ const StyledSelect = styled.select<Omit<SelectProps, 'options'>>`
 `;
 
 const Select: FC<SelectProps> = (props: SelectProps) => {
-  const { options } = props;
+  const { options, ...rest } = props;
   return (
-    <StyledSelect>
+    <StyledSelect {...rest}>
       {options.map(({ value, label }) => (
-        <option value={value}>{label}</option>
+        <option key={value} value={value}>
+          {label}
+        </option>
       ))}
     </StyledSelect>
   );

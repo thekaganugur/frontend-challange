@@ -6,13 +6,12 @@ const data: Data = sampleData as Data;
 const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
-const getFilteredAndSortedData = () =>
+const getFilteredAndSortedData = (programType: ProgramType) =>
   data.entries
     .filter(
-      ({ programType, releaseYear }) =>
-        programType === 'series' && releaseYear >= 2010
+      (entry) => entry.programType === programType && entry.releaseYear >= 2010
     )
     .sort((a, b) => a.title.localeCompare(b.title));
 
 export const getData = (programType: ProgramType) =>
-  sleep(1000).then(() => getFilteredAndSortedData());
+  sleep(1000).then(() => getFilteredAndSortedData(programType));

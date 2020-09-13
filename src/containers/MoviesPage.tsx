@@ -29,6 +29,7 @@ const MoviesPage: FC<MoviesPageProps> = (props: MoviesPageProps) => {
           { to: '/series', title: 'Popular Series', bigText: 'SERIES' },
           { to: '/movies', title: 'Popular Movies', bigText: 'MOVIES' },
         ]}
+        spaceBetween
       />
     </div>
   );
