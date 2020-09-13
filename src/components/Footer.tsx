@@ -16,6 +16,7 @@ const LinksWraper = styled.div``;
 const Footer: FC<FooterProps> = (props: FooterProps) => {
   return (
     <StyledFooter>
+      FOOTER
       <NavigationWraper></NavigationWraper>
       <Copyright></Copyright>
       <LinksWraper></LinksWraper>

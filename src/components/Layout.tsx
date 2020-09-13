@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react';
+import { Box } from '../styled/styledUtils';
 import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
@@ -11,11 +12,11 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
   const { children } = props;
 
   return (
-    <div>
+    <Box height="100%">
       <Header />
       <Content>{children}</Content>
-      <Footer />
-    </div>
+      {/* <Footer /> */}
+    </Box>
   );
 };
 

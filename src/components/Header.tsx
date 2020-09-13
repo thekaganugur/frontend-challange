@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { Box, StyledLink } from '../styled/styledUtils';
 import Button from './Button';
 
 const StyledHeader = styled.div``;
 
 const UpperBlueSection = styled.div`
-  background-color: #0670fe;
-  padding: 0.5rem 4rem 0.5rem 3rem;
+  background-color: #017efe;
+  padding: 0.6rem 4rem 0.6rem 3rem;
 
   display: flex;
   align-items: center;
@@ -16,6 +17,7 @@ const UpperBlueSection = styled.div`
 const AppTitle = styled.h1`
   color: #fff;
   margin: 0;
+  cursor: pointer;
 `;
 
 const ButtonsWraper = styled.div`
@@ -38,11 +40,15 @@ const Header: FC<HeaderProps> = (props: HeaderProps) => {
   return (
     <StyledHeader>
       <UpperBlueSection>
-        <AppTitle>DEMO ST</AppTitle>
+        <StyledLink to="/">
+          <AppTitle>DEMO ST</AppTitle>
+        </StyledLink>
 
         <ButtonsWraper>
-          <Button>Log in</Button>
-          <Button>Start free trail</Button>
+          <Box mr={2}>
+            <Button buttonType="ghost">Log in</Button>
+          </Box>
+          <Button buttonType="secondary">Start free trail</Button>
         </ButtonsWraper>
       </UpperBlueSection>
 

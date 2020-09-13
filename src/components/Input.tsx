@@ -1,12 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-export interface InputProps {}
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-const StyledInput = styled.input``;
+const StyledInput = styled.input`
+  padding: 0.5rem 1rem;
+  width: ${({ width }) => width ?? '15rem'};
+`;
 
 const Input: FC<InputProps> = (props: InputProps) => {
-  return <StyledInput>Input</StyledInput>;
+  return <StyledInput {...props} />;
 };
 
 export default Input;
