@@ -7,7 +7,11 @@ import RenderCards from '../../components/RenderCards';
 import Select from '../../components/Select';
 import { Form } from '../../models';
 import { SearchFilterWraper } from '../../styled/SearchFilterWraper';
-import { getCardsReadyFilteredSortedArray, sortArr } from '../../utils';
+import {
+  getCardsReadyFilteredSortedArray,
+  renderContentConditionally,
+  sortArr,
+} from '../../utils';
 import { fetchSeries } from './seriesSlice';
 
 const initForm: Form = {
@@ -20,40 +24,51 @@ const SeriesPage: FC = () => {
   const dispatch = useDispatch();
 
   const seriesState = useSelector((state: RootState) => state.series);
+  const { loading, error, series } = seriesState;
 
   useEffect(() => {
-    if (seriesState.series.length === 1 && !seriesState.series[0].title) {
+    if (series.length === 1 && !series[0].title) {
       dispatch(fetchSeries());
     }
-  }, [seriesState, dispatch]);
+  }, [series, dispatch]);
 
   const handleChange = ({ target }: ChangeEvent<any>) => {
     setForm({ ...form, [target.name]: target.value });
   };
 
+  const renderedForm = (
+    <SearchFilterWraper>
+      <div className="search-wraper">
+        <Input
+          name="filter"
+          value={form.filter}
+          onChange={handleChange}
+          placeholder="Search..."
+        />
+      </div>
+      <Select
+        name="sort"
+        value={form.sort}
+        onChange={handleChange}
+        options={sortArr}
+      />
+    </SearchFilterWraper>
+  );
+
+  const content = (
+    <>
+      {renderedForm}
+      <RenderCards
+        cards={getCardsReadyFilteredSortedArray(series, form)}
+        spaceBetween
+      />
+    </>
+  );
+
   return (
     <div>
       <Helmet title="Popular Series" />
-      <SearchFilterWraper>
-        <div className="search-wraper">
-          <Input
-            name="filter"
-            value={form.filter}
-            onChange={handleChange}
-            placeholder="Search..."
-          />
-        </div>
-        <Select
-          name="sort"
-          value={form.sort}
-          onChange={handleChange}
-          options={sortArr}
-        />
-      </SearchFilterWraper>
-      <RenderCards
-        cards={getCardsReadyFilteredSortedArray(seriesState.series, form)}
-        spaceBetween
-      />
+      {renderContentConditionally(loading, error, content)}
     </div>
   );
 };

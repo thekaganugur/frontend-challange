@@ -1,3 +1,5 @@
+import React from 'react';
+import { ReactNode } from 'react';
 import { Entries, Form, Sort } from '../models';
 
 const sortYearDesc = (entries: Entries[]) =>
@@ -57,3 +59,13 @@ export const getCardsReadyFilteredSortedArray = (
   entriesToCardsArr(
     handleRelatedSort(filterEntries(entries, form.filter), form.sort)
   );
+
+export const renderContentConditionally = (
+  loading: boolean,
+  error: string | null,
+  content: ReactNode
+) => {
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Oops, something went wrong....</div>;
+  return content;
+};

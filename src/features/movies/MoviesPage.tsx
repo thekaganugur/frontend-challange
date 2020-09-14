@@ -7,7 +7,11 @@ import RenderCards from '../../components/RenderCards';
 import Select from '../../components/Select';
 import { Form } from '../../models';
 import { SearchFilterWraper } from '../../styled/SearchFilterWraper';
-import { getCardsReadyFilteredSortedArray, sortArr } from '../../utils';
+import {
+  getCardsReadyFilteredSortedArray,
+  renderContentConditionally,
+  sortArr,
+} from '../../utils';
 import { fetchMovies } from './moviesSlice';
 
 const initForm: Form = {
@@ -20,6 +24,7 @@ const MoviesPage: FC = () => {
 
   const dispatch = useDispatch();
   const moviesState = useSelector((state: RootState) => state.movies);
+  const { loading, movies, error } = moviesState;
 
   useEffect(() => {
     if (moviesState.movies.length === 1 && !moviesState.movies[0].title) {
@@ -31,30 +36,39 @@ const MoviesPage: FC = () => {
     setForm({ ...form, [target.name]: target.value });
   };
 
-  return (
-    <div>
-      <Helmet title="Popular Movies" />
-      <SearchFilterWraper>
-        <div className="search-wraper">
-          <Input
-            name="filter"
-            value={form.filter}
-            onChange={handleChange}
-            placeholder="Search..."
-          />
-        </div>
-        <Select
-          name="sort"
-          value={form.sort}
+  const renderedForm = (
+    <SearchFilterWraper>
+      <div className="search-wraper">
+        <Input
+          name="filter"
+          value={form.filter}
           onChange={handleChange}
-          options={sortArr}
+          placeholder="Search..."
         />
-      </SearchFilterWraper>
+      </div>
+      <Select
+        name="sort"
+        value={form.sort}
+        onChange={handleChange}
+        options={sortArr}
+      />
+    </SearchFilterWraper>
+  );
 
+  const renderedContent = (
+    <>
+      {renderedForm}
       <RenderCards
         cards={getCardsReadyFilteredSortedArray(moviesState.movies, form)}
         spaceBetween
       />
+    </>
+  );
+
+  return (
+    <div>
+      <Helmet title="Popular Movies" />
+      {renderContentConditionally(loading, error, renderedContent)}
     </div>
   );
 };
