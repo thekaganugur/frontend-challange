@@ -8,11 +8,31 @@ import { Flex } from '../styled/styledUtils';
 import { getData } from '../services/services';
 import { Entries } from '../models';
 import { Helmet } from 'react-helmet';
+import { device } from '../styled/breakpoints';
 
 const SearchFilterWraper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
+
+  .search-wraper {
+    display: flex;
+  }
+
+  @media ${device.smDown} {
+    flex-direction: column;
+    align-items: center;
+
+    .search-wraper {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .styled-input,
+    .styled-select {
+      width: 100%;
+    }
+  }
 `;
 
 interface SeriesPageProps {}
@@ -97,7 +117,7 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
     <div>
       <Helmet title="Popular Series" />
       <SearchFilterWraper>
-        <Flex>
+        <div className="search-wraper">
           <Input
             name="filter"
             value={form.filter}
@@ -105,7 +125,7 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
             placeholder="Search..."
           />
           <Button></Button>
-        </Flex>
+        </div>
         <Select
           name="sort"
           value={form.sort}

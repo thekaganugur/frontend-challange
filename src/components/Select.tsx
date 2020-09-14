@@ -14,7 +14,7 @@ const StyledSelect = styled.select<Omit<SelectProps, 'options'>>`
 const Select: FC<SelectProps> = (props: SelectProps) => {
   const { options, ...rest } = props;
   return (
-    <StyledSelect {...rest}>
+    <StyledSelect className="styled-select" {...rest}>
       {options.map(({ value, label }) => (
         <option key={value} value={value}>
           {label}

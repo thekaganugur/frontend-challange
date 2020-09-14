@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import { device } from '../styled/breakpoints';
 import { Box, StyledLink } from '../styled/styledUtils';
 import Button from './Button';
 
@@ -13,12 +14,21 @@ const UpperBlueSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media ${device.smDown} {
+    padding: 0.6rem 2rem 0.6rem 1.5rem;
+  }
 `;
 
 const AppTitle = styled.h1`
   color: #fff;
   margin: 0;
   cursor: pointer;
+  font-size: 2em;
+
+  @media ${device.smDown} {
+    font-size: 1.4em;
+  }
 `;
 
 const ButtonsWraper = styled.div`
@@ -28,11 +38,20 @@ const ButtonsWraper = styled.div`
 const BelowGraySection = styled.div`
   background-color: #414141;
   padding: 0.5rem 4rem 0.5rem 3rem;
+
+  @media ${device.smDown} {
+    padding: 0.5rem 2rem 0.5rem 1.5rem;
+  }
 `;
 
 const PageTitle = styled.h2`
   color: #fff;
   margin: 0;
+  font-size: 1.5em;
+
+  @media ${device.smDown} {
+    font-size: 1.1em;
+  }
 `;
 
 export interface HeaderProps {}

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { device } from '../styled/breakpoints';
 
 const cardWidth = '10rem';
 
@@ -13,10 +14,14 @@ const Wraper = styled.div`
   display: flex;
   flex-direction: column;
   width: ${cardWidth};
+
+  @media ${device.xsDown} {
+    width: 100%;
+  }
 `;
 
 const StyledCard = styled.div`
-  height: 14rem;
+  min-height: 14rem;
   width: ${cardWidth};
   background: pink;
   margin-bottom: 0.5rem;
@@ -28,7 +33,11 @@ const StyledCard = styled.div`
   img {
     width: 100%;
     height: 100%;
-    resize-mode: stretch;
+    object-fit: cover;
+  }
+
+  @media ${device.xsDown} {
+    width: 100%;
   }
 `;
 
