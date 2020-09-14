@@ -9,4 +9,4 @@ Runs the app in the development mode.
 ## `npm test`
 
 Launches the test runner in the interactive watch mode.
-There is few tests for the sake of example.
+There are few tests for the sake of example.
