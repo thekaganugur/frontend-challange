@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  entriesToCardsArr,
+  filterEntries,
   renderContentConditionally,
   sortByTitleAsc,
   sortByTitleDesc,
@@ -30,6 +32,14 @@ test('Sort entries by title in ascending order A-Z', () => {
 });
 test('Sort entries by title in descending order Z-A', () => {
   expect(sortByTitleDesc(entries)).toEqual(sortedByTitleDesc);
+});
+
+test('Filters entries by given string', () => {
+  expect(filterEntries(entries, 'Wol')).toEqual(entriesFilteredByWol);
+});
+
+test('Transforms entries to usable array by cards', () => {
+  expect(entriesToCardsArr(entries)).toEqual(entriesForCardsArr);
 });
 
 const entries: Entries[] = [
@@ -196,5 +206,36 @@ const sortedByYearAsc: Entries[] = [
       },
     },
     releaseYear: 2016,
+  },
+];
+
+const entriesFilteredByWol: Entries[] = [
+  {
+    title: 'Wolf Creek',
+    description: '',
+    programType: 'series',
+    images: {
+      'Poster Art': {
+        url: '',
+        width: 1000,
+        height: 1500,
+      },
+    },
+    releaseYear: 2016,
+  },
+];
+
+const entriesForCardsArr = [
+  {
+    title: 'Wolf Creek',
+    image: '',
+  },
+  {
+    title: 'No Activity',
+    image: '',
+  },
+  {
+    title: 'Better Call Saul',
+    image: '',
   },
 ];
