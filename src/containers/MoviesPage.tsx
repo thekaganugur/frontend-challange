@@ -6,18 +6,26 @@ import RenderCards from '../components/RenderCards';
 import Select from '../components/Select';
 import { Flex } from '../styled/styledUtils';
 import { Helmet } from 'react-helmet';
-import { Entries } from '../models';
+import { Entries, Sort } from '../models';
 import { getData } from '../services/services';
+import { SearchFilterWraper } from '../styled/SearchFilterWraper';
 import {
   entriesToCardsArr,
   filterEntries,
   handleRelatedSort,
-  SearchFilterWraper,
-  Sort,
   sortArr,
-} from './SeriesPage';
+} from '../utils';
 
 interface MoviesPageProps {}
+interface Form {
+  filter: string;
+  sort: Sort;
+}
+
+const initForm: Form = {
+  filter: '',
+  sort: '',
+};
 
 const initEntries: Entries[] = [
   {
@@ -28,15 +36,6 @@ const initEntries: Entries[] = [
     title: '',
   },
 ];
-interface Form {
-  filter: string;
-  sort: Sort;
-}
-
-const initForm: Form = {
-  filter: '',
-  sort: '',
-};
 
 const MoviesPage: FC<MoviesPageProps> = (props: MoviesPageProps) => {
   const [state, setState] = useState<Entries[]>(initEntries);

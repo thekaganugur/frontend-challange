@@ -19,3 +19,5 @@ export type Entries = {
 };
 
 export type Data = { total: number; entries: Entries[] };
+
+export type Sort = '' | 'yearDesc' | 'yearAsc' | 'titleDesc' | 'titleAsc';
