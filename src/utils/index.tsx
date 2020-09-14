@@ -2,10 +2,10 @@ import React from 'react';
 import { ReactNode } from 'react';
 import { Entries, Form, Sort } from '../models';
 
-const sortByYearDesc = (entries: Entries[]) =>
+export const sortByYearDesc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => b.releaseYear - a.releaseYear);
 
-const sortByYearAsc = (entries: Entries[]) =>
+export const sortByYearAsc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => a.releaseYear - b.releaseYear);
 
 export const sortByTitleAsc = (entries: Entries[]) =>
