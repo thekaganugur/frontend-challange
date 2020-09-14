@@ -27,7 +27,7 @@ const MoviesPage: FC = () => {
   const { loading, movies, error } = moviesState;
 
   useEffect(() => {
-    if (moviesState.movies.length === 1 && !moviesState.movies[0].title) {
+    if (movies.length === 1 && !movies[0].title) {
       dispatch(fetchMovies());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,7 +60,7 @@ const MoviesPage: FC = () => {
     <>
       {renderedForm}
       <RenderCards
-        cards={getCardsReadyFilteredSortedArray(moviesState.movies, form)}
+        cards={getCardsReadyFilteredSortedArray(movies, form)}
         spaceBetween
       />
     </>
