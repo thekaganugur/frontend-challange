@@ -12,11 +12,13 @@ const Layout: FC<LayoutProps> = (props: LayoutProps) => {
   const { children } = props;
 
   return (
-    <Box height="100%">
+    <>
       <Header />
-      <Content>{children}</Content>
-      {/* <Footer /> */}
-    </Box>
+      <Box minHeight="100vh">
+        <Content>{children}</Content>
+      </Box>
+      <Footer />
+    </>
   );
 };
 
