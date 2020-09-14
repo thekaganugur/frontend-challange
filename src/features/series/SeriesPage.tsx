@@ -30,7 +30,8 @@ const SeriesPage: FC = () => {
     if (series.length === 1 && !series[0].title) {
       dispatch(fetchSeries());
     }
-  }, [series, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = ({ target }: ChangeEvent<any>) => {
     setForm({ ...form, [target.name]: target.value });

@@ -2,30 +2,32 @@ import React from 'react';
 import { ReactNode } from 'react';
 import { Entries, Form, Sort } from '../models';
 
-const sortYearDesc = (entries: Entries[]) =>
+const sortByYearDesc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => b.releaseYear - a.releaseYear);
 
-const sortYearAsc = (entries: Entries[]) =>
+const sortByYearAsc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => a.releaseYear - b.releaseYear);
 
-const sortTitleDesc = (entries: Entries[]) =>
+export const sortByTitleAsc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => a.title.localeCompare(b.title));
 
-const sortTitleAsc = (entries: Entries[]) =>
+export const sortByTitleDesc = (entries: Entries[]) =>
   entries.slice().sort((a, b) => b.title.localeCompare(a.title));
 
 export const handleRelatedSort = (entries: Entries[], sortType: Sort) => {
-  console.log(entries, sortType);
-  // return entries;
   switch (sortType) {
     case 'yearDesc':
-      return sortYearDesc(entries);
+      // 9-0
+      return sortByYearDesc(entries);
     case 'yearAsc':
-      return sortYearAsc(entries);
+      // 0-9
+      return sortByYearAsc(entries);
     case 'titleDesc':
-      return sortTitleDesc(entries);
+      // Z-A
+      return sortByTitleDesc(entries);
     case 'titleAsc':
-      return sortTitleAsc(entries);
+      // A-Z
+      return sortByTitleAsc(entries);
     default:
       return entries;
   }
@@ -48,8 +50,8 @@ export const sortArr: { value: Sort; label: string }[] = [
   { value: '', label: 'None' },
   { value: 'yearDesc', label: 'Sort by year in descending order' },
   { value: 'yearAsc', label: 'Sort by year in ascending order' },
-  { value: 'titleDesc', label: 'Sort by title in descending order (A-Z)' },
-  { value: 'titleAsc', label: 'Sort by title in ascending order (Z-A)' },
+  { value: 'titleDesc', label: 'Sort by title in descending order (Z-A)' },
+  { value: 'titleAsc', label: 'Sort by title in ascending order (A-Z)' },
 ];
 
 export const getCardsReadyFilteredSortedArray = (

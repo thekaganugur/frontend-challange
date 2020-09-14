@@ -30,7 +30,8 @@ const MoviesPage: FC = () => {
     if (moviesState.movies.length === 1 && !moviesState.movies[0].title) {
       dispatch(fetchMovies());
     }
-  }, [moviesState, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChange = ({ target }: ChangeEvent<any>) => {
     setForm({ ...form, [target.name]: target.value });
