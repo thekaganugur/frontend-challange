@@ -23,7 +23,7 @@ const Wraper = styled.div`
 const StyledCard = styled.div`
   min-height: 14rem;
   width: ${cardWidth};
-  background: pink;
+  background: #1e1e1e;
   margin-bottom: 0.5rem;
 
   display: flex;

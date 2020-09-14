@@ -26,5 +26,5 @@ export const Flex = styled(Box)<FlexProps>`
 export const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: inherit;
-  cursor: inherit;
+  /* cursor: inherit; */
 `;
