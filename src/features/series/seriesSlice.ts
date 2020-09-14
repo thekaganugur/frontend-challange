@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../../app/store';
-import { Entries, ProgramType } from '../../models';
+import { Entries } from '../../models';
 import { getData } from '../../services/services';
 
 interface SeriesState {
@@ -18,7 +18,7 @@ const initialState: SeriesState = {
     {
       description: '',
       images: { 'Poster Art': { height: 0, url: '', width: 0 } },
-      programType: 'movie',
+      programType: 'series',
       releaseYear: 0,
       title: '',
     },
@@ -28,7 +28,7 @@ const initialState: SeriesState = {
 };
 
 const series = createSlice({
-  name: 'comments',
+  name: 'series',
   initialState,
   reducers: {
     getSeriesStart(state) {
@@ -54,12 +54,10 @@ export const {
 } = series.actions;
 export default series.reducer;
 
-export const fetchComments = (programType: ProgramType): AppThunk => async (
-  dispatch
-) => {
+export const fetchSeries = (): AppThunk => async (dispatch) => {
   try {
     dispatch(getSeriesStart());
-    const series = await getData(programType);
+    const series = await getData('series');
     dispatch(getSeriesSuccess({ series }));
   } catch (err) {
     dispatch(getSeriesFailure(err));

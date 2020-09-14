@@ -1,32 +1,21 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import Input from '../components/Input';
-import RenderCards from '../components/RenderCards';
-import Select from '../components/Select';
-import { fetchComments } from '../features/series/seriesSlice';
-import { Sort } from '../models';
-import { SearchFilterWraper } from '../styled/SearchFilterWraper';
-import {
-  entriesToCardsArr,
-  filterEntries,
-  handleRelatedSort,
-  sortArr,
-} from '../utils';
-
-interface SeriesPageProps {}
-interface Form {
-  filter: string;
-  sort: Sort;
-}
+import { RootState } from '../../app/store';
+import Input from '../../components/Input';
+import RenderCards from '../../components/RenderCards';
+import Select from '../../components/Select';
+import { Form } from '../../models';
+import { SearchFilterWraper } from '../../styled/SearchFilterWraper';
+import { getCardsReadyFilteredSortedArray, sortArr } from '../../utils';
+import { fetchSeries } from './seriesSlice';
 
 const initForm: Form = {
   filter: '',
   sort: '',
 };
 
-const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
+const SeriesPage: FC = () => {
   const [form, setForm] = useState<Form>(initForm);
   const dispatch = useDispatch();
 
@@ -34,7 +23,7 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
 
   useEffect(() => {
     if (seriesState.series.length === 1 && !seriesState.series[0].title) {
-      dispatch(fetchComments('series'));
+      dispatch(fetchSeries());
     }
   }, [seriesState, dispatch]);
 
@@ -62,12 +51,7 @@ const SeriesPage: FC<SeriesPageProps> = (props: SeriesPageProps) => {
         />
       </SearchFilterWraper>
       <RenderCards
-        cards={entriesToCardsArr(
-          handleRelatedSort(
-            filterEntries(seriesState.series, form.filter),
-            form.sort
-          )
-        )}
+        cards={getCardsReadyFilteredSortedArray(seriesState.series, form)}
         spaceBetween
       />
     </div>

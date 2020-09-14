@@ -1,18 +1,20 @@
-import { Entries, Sort } from '../models';
+import { Entries, Form, Sort } from '../models';
 
-const sortYearDesc = (entries?: Entries[]) =>
-  entries?.sort((a, b) => b.releaseYear - a.releaseYear);
+const sortYearDesc = (entries: Entries[]) =>
+  entries.slice().sort((a, b) => b.releaseYear - a.releaseYear);
 
-const sortYearAsc = (entries?: Entries[]) =>
-  entries?.sort((a, b) => a.releaseYear - b.releaseYear);
+const sortYearAsc = (entries: Entries[]) =>
+  entries.slice().sort((a, b) => a.releaseYear - b.releaseYear);
 
-const sortTitleDesc = (entries?: Entries[]) =>
-  entries?.sort((a, b) => a.title.localeCompare(b.title));
+const sortTitleDesc = (entries: Entries[]) =>
+  entries.slice().sort((a, b) => a.title.localeCompare(b.title));
 
-const sortTitleAsc = (entries?: Entries[]) =>
-  entries?.sort((a, b) => b.title.localeCompare(a.title));
+const sortTitleAsc = (entries: Entries[]) =>
+  entries.slice().sort((a, b) => b.title.localeCompare(a.title));
 
 export const handleRelatedSort = (entries: Entries[], sortType: Sort) => {
+  console.log(entries, sortType);
+  // return entries;
   switch (sortType) {
     case 'yearDesc':
       return sortYearDesc(entries);
@@ -47,3 +49,11 @@ export const sortArr: { value: Sort; label: string }[] = [
   { value: 'titleDesc', label: 'Sort by title in descending order (A-Z)' },
   { value: 'titleAsc', label: 'Sort by title in ascending order (Z-A)' },
 ];
+
+export const getCardsReadyFilteredSortedArray = (
+  entries: Entries[],
+  form: Form
+) =>
+  entriesToCardsArr(
+    handleRelatedSort(filterEntries(entries, form.filter), form.sort)
+  );

@@ -6,7 +6,7 @@ interface HomeProps {}
 
 const HomePage: FC<HomeProps> = (props: HomeProps) => {
   return (
-    <>
+    <div>
       <Helmet title="Popular Titles" />
       <RenderCards
         cards={[
@@ -14,7 +14,7 @@ const HomePage: FC<HomeProps> = (props: HomeProps) => {
           { to: '/movies', title: 'Popular Movies', bigText: 'MOVIES' },
         ]}
       />
-    </>
+    </div>
   );
 };
 

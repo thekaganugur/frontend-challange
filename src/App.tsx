@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './containers/HomePage';
-import MoviesPage from './containers/MoviesPage';
-import SeriesPage from './containers/SeriesPage';
+import MoviesPage from './features/movies/MoviesPage';
+import SeriesPage from './features/series/SeriesPage';
 
 function App() {
   return (

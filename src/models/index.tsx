@@ -21,3 +21,8 @@ export type Entries = {
 export type Data = { total: number; entries: Entries[] };
 
 export type Sort = '' | 'yearDesc' | 'yearAsc' | 'titleDesc' | 'titleAsc';
+
+export interface Form {
+  filter: string;
+  sort: Sort;
+}
