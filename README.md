@@ -1,3 +1,5 @@
+You can find more about the challange [here.](https://github.com/pankod/frontend-challenge)
+
 # Available Scripts
 
 In the project directory, you can run:
